@@ -1,4 +1,5 @@
-import { Routes, Route } from "react-router-dom";
+import { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { I18nProvider } from "@/i18n/I18nProvider";
@@ -11,9 +12,20 @@ import { SectionPostsPage } from "@/pages/SectionPostsPage";
 import { PostDetailsPage } from "@/pages/PostDetailsPage";
 import { AdminPage } from "@/pages/AdminPage";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+
+  return null;
+}
+
 export default function App() {
   return (
     <I18nProvider>
+      <ScrollToTop />
       <div className="min-h-screen bg-background text-foreground">
         <Navbar />
         <main>
